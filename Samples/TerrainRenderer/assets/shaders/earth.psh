@@ -1,0 +1,24 @@
+Texture2D    g_texture;
+SamplerState g_texture_sampler;
+
+struct PSInput
+{
+    float4 Pos : SV_POSITION;
+    float2 UV  : TEX_COORD;
+    float  NdotL : N_DOT_L;
+};
+
+struct PSOutput
+{
+    float4 Color : SV_TARGET;
+};
+
+void main(in  PSInput  PSIn,
+          out PSOutput PSOut)
+{
+    float ambientLCoeff = 0.05;
+    float diffuseLCoeff = 0.7;
+
+    // Simplified Phong model, no specular effet, mostly diffusion and filtering high angle to do a lamp effect
+    PSOut.Color = g_texture.Sample(g_texture_sampler, PSIn.UV) * (PSIn.NdotL * diffuseLCoeff + ambientLCoeff);
+}

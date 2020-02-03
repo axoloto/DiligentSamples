@@ -9,5 +9,6 @@ if(TARGET Diligent-AssetLoader AND TARGET DiligentFX)
     add_subdirectory(Shadows)
 endif()
 
+add_subdirectory(TerrainRenderer)
 add_subdirectory(ImguiDemo)
 add_subdirectory(NuklearDemo)
